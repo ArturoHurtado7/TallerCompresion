@@ -22,6 +22,7 @@ class ShannonFano:
         compression map structure:
             {'character': {'probability': Pr, 'lenght': Lsf, 'code': B2}}
         """
+        print('Compressing...')
         # proccess the input text
         self.text = self.utils.get_text()
         self.lenght = len(self.text)
@@ -31,17 +32,17 @@ class ShannonFano:
         self.get_basics()
         self.get_order()
         self.get_code()
-        # compression map
+        # print compression map
         [print(f'{repr(o[0])}:', self.compression[o[0]]) for o in self.order]
         # code the text
-        self.get_coded()
+        self.get_coded_text()
         print(f'\nCompressed text:\n{self.coded_text}\n')
         # decompression map
-        self.get_uncode()
+        self.get_decode()
         # print the decompression map
         [print(f'{key}:', value) for key, value in self.decompression.items()]
         # decode the text
-        self.get_decoded()
+        self.get_decoded_text()
         print(f'\nDecompressed text:\n{self.decoded_text}')
 
     def get_basics(self):
@@ -84,14 +85,14 @@ class ShannonFano:
             code = self.utils.binary_multiply(self.utils.binary_add(prev_code, '1'), bin(2**d)[2:])
             self.compression[char]['code'] = self.utils.fill_zeros(code, lenght)
 
-    def get_coded(self):
+    def get_coded_text(self):
         """
         Get the coded text
         """
         for char in self.text:
             self.coded_text += self.compression[char]['code']
     
-    def get_uncode(self):
+    def get_decode(self):
         """
         Get the uncoded text
         """
@@ -104,7 +105,7 @@ class ShannonFano:
                 'char': char
             }
     
-    def get_decoded(self):
+    def get_decoded_text(self):
         """
         Get the decoded text
         """

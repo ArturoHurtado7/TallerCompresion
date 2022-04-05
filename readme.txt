@@ -22,6 +22,8 @@ La ejecución del progama main.py debe contener el nombre del archivo de entrada
 > cd "D:\Maestria\Proyecto\source"                                          <- comando para ubicarse en la carpeta source
 > python main.py -i ./input.txt -o ./output.txt -a compress -c huffman      <- comando para ejecutar el programa main.py
 
+> py main.py -i ../tests/input.txt -o ./output.txt -a compress -c shannon_fano
+
 existen 4 parametros los cuales son requeridos:
 
 --input ó i     : parametro que indica la ruta del archivo de entrada.

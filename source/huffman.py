@@ -11,13 +11,27 @@ class Huffman:
         self.order = []
         self.coded_text = ''
         self.decoded_text = ''
+        self.left  = None
+        self.right = None
+        self.huff = ''
+
 
     def compress(self):
         print('Compressing...')
         self.text = self.utils.get_text()
         self.lenght = len(self.text)
         self.frequency = self.utils.get_frequency()
-        print(f'Frequency: {self.frequency}')
+        data = {key: value for key, value in sorted(self.frequency.items(), key=lambda item: item[1])}
+        list = [(key, value) for key, value in data.items()]
+        print(list)
+        while len(list) > 1 :
+            leastTwo = tuple(list[0:2])                  
+            theRest  = list[2:]                          
+            combFreq = leastTwo[0][0] + leastTwo[1][0]     
+            list   = theRest + [(combFreq,leastTwo)]     
+            list.sort()
+        print(list)
+        
 
     def decompress(self):
         print('Decompressing...')

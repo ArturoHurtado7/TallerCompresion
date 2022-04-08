@@ -23,6 +23,7 @@ La ejecución del progama main.py debe contener el nombre del archivo de entrada
 > python main.py -i ./input.txt -o ./output.txt -a compress -c huffman      <- comando para ejecutar el programa main.py
 
 > py main.py -i ../tests/input.txt -o ./output.txt -a compress -c shannon_fano
+> py main.py -i ../tests/input.txt -o ./output.txt -a compress -c huffman
 
 existen 4 parametros los cuales son requeridos:
 

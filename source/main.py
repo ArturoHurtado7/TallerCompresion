@@ -22,15 +22,17 @@ def help():
 
     print('valid arguments:\n')
     print(' <compression>: \t -c or --compression')
-    print(' <input>: \t\t -i or --input')
+    print(' <input>: \t\t -i or --input\n')
 
     print('valid options:\n')
     print(f' [compressions]: \t {" OR ".join(compressions)}')
-    print(f' [input]: \t\t path in machine')
+    print(f' [input]: \t\t path in machine\n')
 
     print('Examples:\n')
-    print('> python main.py -c huffman -a compress -i C:\input.txt')
-    print('> python main.py --compression huffman --input C:\input.txt\n')
+    print('> python main.py -c huffman -a compress -i "C:\input.txt"')
+    print('> python main.py --compression huffman --input "C:\input.txt"\n')
+    print('> python main.py -c shannon_fano -a compress -i "C:\input.txt"')
+    print('> python main.py --compression shannon_fano --input "C:\input.txt"\n')
     exit(1)
 
 
@@ -42,12 +44,12 @@ def main():
     # check if the user needs help
     if any(e in ['-h', '--help'] for e in args): help()
 
-    # check if ammount of arguments is correct
+    # check if ammount of arguments is even
     if len(args) % 2 != 0:
         print('Error: wrong number of arguments, use -h or --help for help')
         exit(1)
 
-    # check if parameters are valid, iterate over args by 2
+    # check if parameters are valid, iterate over even args
     for i in range(0, len(args), 2):
         if args[i] in ['-i', '--input']:
             input_path = args[i+1]
@@ -72,13 +74,16 @@ def main():
     elif compression == 'shannon_fano':
         compressor = ShannonFano(input_path)
 
+    # compress file
     coded, stats = compressor.compress()
 
+    # export stats and binary file
     util = Utils()
     print(util.export_binary(source=coded, output_path=output_path))
     print(util.export_file(source=stats, output_path=stats_path))
 
-# call main
+
+# main function call
 if __name__ == "__main__":
     main()
 

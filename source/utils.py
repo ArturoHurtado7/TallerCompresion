@@ -1,4 +1,4 @@
-import math, csv 
+import math
 
 class Utils:
 
@@ -40,18 +40,6 @@ class Utils:
                 self.frequency[char] = 1
         return self.frequency
 
-    def get_bin(self, input):
-        """
-        Get the binary value
-        """
-        return bin(ord(input))[2:]
-
-    def get_char(self, input):
-        """
-        Get the char value
-        """
-        return chr(input)
-
     def binary_add(self, a, b):
         """
         Add two binary strings
@@ -86,14 +74,22 @@ class Utils:
         """
         export  file
         """
-        with open(output_path, 'w', encoding='utf-8', newline='') as f:
-            f.write(source)
-        return 'Archivo con asignación de personas a tareas exportado satisfactoriamente'
-    
+        try: 
+            with open(output_path, 'w', encoding='utf-8', newline='') as f:
+                f.write(source)
+            return f'\nArchivo de estadisticas "{output_path}" exportado satisfactoriamente\n'
+        except Exception as e:
+            print(f'Error: file "{output_path}" {e}')
+            exit(1)
+
     def export_binary(self, source, output_path):
         """
         export binary file
         """
-        with open(output_path, 'wb') as f:
-            f.write(source)
-        return 'Archivo con asignación de personas a tareas exportado satisfactoriamente'
+        try:
+            with open(output_path, 'wb') as f:
+                f.write(source)
+            return f'\nArchivo Binario "{output_path}" exportado satisfactoriamente'
+        except Exception as e:
+            print(f'Error: file "{output_path}" {e}')
+            exit(1)

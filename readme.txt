@@ -1,9 +1,9 @@
 ################################## README ##################################
 
 Jaime Arturo Hurtado Romero   ja.hurtado905@uniandes.edu.co   cod. 201212121
+Hernan David Cuy Salcedo      h.cuy@uniandes.edu.co           cod. 202019100
 
 ############################################################################
-
 
 Generalidades:
 
@@ -15,22 +15,25 @@ en donde encontrará dos archivos de python con extension ".py", uno para cada a
 * shannon_fano.py   --> (Algoritmo) contiene las funciones para realizar el algoritmo.
 * utils.py          --> (Utilidades) funciones generales.
 
+Para ejecutar el algoritmo deberá ejecutar el archivo main.py desde la terminal al estar ubicado dentro de la carpeta "/source".
+La ejecución del progama main.py debe contener el nombre del archivo de entrada, como se muestra en los siguientes ejemplos:
 
-Para ejecutar el algoritmo deberá ejecutar el archivo main.py desde la terminal y estar ubicado dentro del folder de source.
-La ejecución del progama main.py debe contener el nombre del archivo de entrada y salida, como se muestra en el siguiente ejemplo:
+> cd "D:\Maestria\Proyecto\source"                  <- comando para ubicarse en la carpeta source
 
-> cd "D:\Maestria\Proyecto\source"                                          <- comando para ubicarse en la carpeta source
-> python main.py -i ./input.txt -o ./output.txt -a compress -c huffman      <- comando para ejecutar el programa main.py
+> python main.py -i "./input.txt" -c huffman        <- comando para ejecutar el programa main.py con compresion huffman
+> python main.py -i "./input.txt" -c shannon_fano   <- comando para ejecutar el programa main.py con compresion shannon_fano
 
-> py main.py -i ../tests/input.txt -o ./output.txt -a compress -c shannon_fano
-> py main.py -i ../tests/input.txt -o ./output.txt -a compress -c huffman
+existen 2 parametros los cuales son requeridos:
 
-existen 4 parametros los cuales son requeridos:
+--input ó -i        <- parametro que indica la ruta del archivo de entrada.
+--compression ó -c  <- parametro que indica tipo de compresion.
 
---input ó i     : parametro que indica la ruta del archivo de entrada.
---output ó o    : parametro que indica la ruta del archivo de salida.
+se generarán 2 archivos de salida en la misma carpeta de entrada:
 
+comp.bin    <- archivo binario con el contenido comprimido
+stats.txt   <- archivo de texto con las metricas y las llaves
 
-
+adicionalmente a los archivos generados anteriormente se muestra en pantalla los testos originales, comprimidos y descomprimidos
+junto con los diccionarios para realizar las operaciones.
 
 ############################################################################

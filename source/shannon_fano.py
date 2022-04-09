@@ -1,4 +1,5 @@
 import math
+import json
 from utils import Utils
 
 class ShannonFano:
@@ -44,6 +45,8 @@ class ShannonFano:
         # decode the text
         self.get_decoded_text()
         print(f'\nDecompressed text:\n{self.decoded_text}')
+        stats = self.get_stats()
+        return self.utils.get_encode_value(self.coded_text), stats
 
     def get_basics(self):
         """
@@ -118,19 +121,22 @@ class ShannonFano:
                 self.decoded_text += letter
                 text = ''
 
-
-
-    def decompress(self):
-        print('Decompressing...')
-
-    def code_table(self):
-        print('Generating code table...')
+    def get_stats(self):
+        stats = 'Stats Shanno Fano:\n'
+        stats += f'Original bits length: {self.utils.get_bit_size(self.text)}\n'
+        stats += f'Compressed bits length: {len(self.coded_text)}\n'
+        stats += f'Expected bits number: {self.expected_bits()}\n'
+        stats += f'Worse case entropy: {self.utils.worse_case_entropy()}\n'
+        stats += str(json.dumps(self.decompression, indent=4, sort_keys=True))
+        return stats
 
     def expected_bits(self):
-        print('Calculating expected bits...')
-
-    def worse_case_entropy(self):
-        print('Calculating worse case entropy...')
-
-    def total_bits(self):
-        print('Calculating total bits...')
+        """
+        Calculate the expected bits
+        """
+        #return sum([self.frequency[char] * len(self.compression[char]) for char in self.compression])
+        expected_bits = 0
+        for char in self.compression:
+            probability = self.frequency[char] / self.lenght
+            expected_bits += probability * len(self.compression[char]['code'])
+        return expected_bits
